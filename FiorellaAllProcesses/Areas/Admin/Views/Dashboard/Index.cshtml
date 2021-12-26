@@ -1,0 +1,67 @@
+﻿@model HomeVM
+@{
+    ViewData["Title"] = "Index";
+    int katNum = 1;
+}
+
+<div class="main-panel">
+    <div class="content-wrapper">
+        <div class="row">
+            <div class="col-lg-6 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Flower Categories</h4>
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>№</th>
+                                        <th>Name</th>
+                                        <th>Settings</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var kat in Model.Categories)
+                                    {
+                                        <tr>
+                                            <td>@katNum</td>
+                                            <td>@kat.Name</td>
+                                            <td>
+                                                <label class="btn btn-primary " asp-action="Detail" asp-route-id="@kat.Id">
+                                                    <i class="mdi mdi-eye"></i>
+                                                </label>
+                                            </td>
+                                            <td>
+                                                <a asp-action="Update" asp-route-id="@kat.Id">
+                                                    <label class="btn btn-warning">
+                                                        <i class="mdi mdi-table-edit"></i>
+                                                    </label>
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <form asp-action="Delete" asp-route-id="@kat.Id" class="d-inline" method="post">
+                                                    <label class="btn btn-danger">
+                                                        <i class="mdi mdi-delete"></i>
+                                                    </label>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                        katNum++;
+                                    }
+
+                                </tbody>
+                            </table>
+                            <br />
+                            <a asp-area="Admin" asp-controller="Dashboard" asp-action="Create"><label class="btn btn-success d-flex justify-content-center">Create Category</label></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- content-wrapper ends -->
+    <!-- partial:partials/_footer.html -->
+    @await Component.InvokeAsync("AdminFooter")
+    <!-- partial -->
+</div>
+

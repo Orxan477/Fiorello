@@ -1,0 +1,54 @@
+﻿@model List<BasketItemVM>
+@{
+    ViewData["Title"] = "BasketShop";
+    int count = 1;
+    int total = 0;
+}
+
+
+<div class="container">
+    <div class="row">
+        @if (Model.Count != 0)
+        {
+            <table class="table table-dark">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Image</th>
+                        <th scope="col">Count</th>
+                        <th scope="col">Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        @*@total+= item.Count * item.Price;*@
+                        <tr>
+                            <th scope="col">@count</th>
+                            <td>@item.Name</td>
+                            <td>
+                                <img src="~/img/@item.Image" height="150px" />
+                            </td>
+                            <td>@item.Count</td>
+                            <td>@item.Price</td>
+
+                        </tr>
+                        count++;
+                    }
+
+                </tbody>
+
+            </table>
+            <h2>Total: @total</h2>
+        }
+        else
+        {
+            <h3><a asp-controller="Home" asp-action="Index">Buradan</a> əsas səhifəyə qayıdın</h3>
+        }
+
+
+    </div>
+</div>
+
+

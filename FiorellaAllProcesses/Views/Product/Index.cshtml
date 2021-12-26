@@ -1,0 +1,14 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+<div class="container">
+    <div class="row plus">
+        @await Component.InvokeAsync("Product", new { take = 8 })
+    </div>
+    <input type="hidden" id="proCount" value="@ViewBag.proCount" />
+    <div class="d-flex justify-content-center my-5">
+        <button type="submit" class="btn btn-primary" id="more">More</button>
+    </div>
+</div>
+
