@@ -30,7 +30,9 @@
                                     {
                                         <tr>
                                             <td>@productNum</td>
-                                            <td>@product.ProductImage.FirstOrDefault().Image</td>
+                                            <td>
+                                                <img src="~/img/@product.ProductImage.FirstOrDefault().Image" alt=""/>
+                                            </td>
                                             <td>@product.Name</td>
                                             <td>@product.Category.Name</td>
                                             <td>@product.Currency.Character @product.Price</td>
