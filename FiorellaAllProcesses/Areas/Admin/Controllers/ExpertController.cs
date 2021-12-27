@@ -82,7 +82,6 @@ namespace FiorellaAllProcesses.Areas.Admin.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [ActionName("Delete")]
         public async Task<IActionResult> Delete(int id)
         {
             Expert dbexpert = await _context.Experts
