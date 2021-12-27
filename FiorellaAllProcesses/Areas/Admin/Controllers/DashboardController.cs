@@ -22,7 +22,9 @@ namespace FiorellaAllProcesses.Areas.Admin.Controllers
         {
             HomeVM homeVM = new HomeVM
             {
-                Categories=await _context.Categories.ToListAsync(),
+                Categories=await _context.Categories
+                                          .Where(c=>c.IsDeleted==false)
+                                          .ToListAsync(),
             };
             return View(homeVM);
         }
@@ -80,18 +82,21 @@ namespace FiorellaAllProcesses.Areas.Admin.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction("Index", "Dashboard");
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [ActionName("Delete")]
         public async Task<IActionResult> Delete(int id)
         {
+            
             Category dbcategory = await _context.Categories
                                               .Where(p => p.IsDeleted == false && p.Id == id)
                                               .FirstOrDefaultAsync();
+            
             if (dbcategory == null) return NotFound();
+            //return Json("sa");
             dbcategory.IsDeleted = true;
             await _context.SaveChangesAsync();
-            return RedirectToAction("Index", "Category");
+            return RedirectToAction(nameof(Index));
         }
     }
 }

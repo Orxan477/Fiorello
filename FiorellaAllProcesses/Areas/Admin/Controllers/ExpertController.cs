@@ -22,7 +22,9 @@ namespace FiorellaAllProcesses.Areas.Admin.Controllers
         {
             HomeVM homeVM = new HomeVM
             {
-                Experts = await _context.Experts.ToListAsync(),
+                Experts = await _context.Experts
+                                        .Where(c => c.IsDeleted == false)
+                                        .ToListAsync(),
             };
             return View(homeVM);
         }
