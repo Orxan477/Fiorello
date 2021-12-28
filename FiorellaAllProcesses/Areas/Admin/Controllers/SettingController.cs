@@ -1,5 +1,6 @@
 ﻿using FiorellaAllProcesses.DAL;
 using FiorellaAllProcesses.Models;
+using FiorellaAllProcesses.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
@@ -16,9 +17,13 @@ namespace FiorellaAllProcesses.Areas.Admin.Controllers
         {
             _context = context;
         }
-        public IActionResult Index()
+        public async  Task<IActionResult> Index()
         {
-            return View(_context.Settings);
+            HomeVM homeVM = new HomeVM
+            {
+                Settings=await _context.Settings.ToListAsync(),
+            };
+            return View(homeVM);
         }
         public IActionResult Update(int id)
         {
@@ -38,10 +43,6 @@ namespace FiorellaAllProcesses.Areas.Admin.Controllers
                                                 .Where(c=>c.Id == id)
                                                 .FirstOrDefaultAsync();
             if (dbsetting == null) return NotFound();
-            if (dbsetting.Value.Trim().ToLower() == setting.Value.Trim().ToLower())
-            {
-                return RedirectToAction("Index", "Setting");
-            }
 
             dbsetting.Value = setting.Value;
             await _context.SaveChangesAsync();

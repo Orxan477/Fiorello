@@ -13,6 +13,8 @@ namespace FiorellaAllProcesses.Areas.Admin.Controllers
     [Area("Admin")]
     public class SliderController : Controller
     {
+        private Task<int> _size;
+
         private AppDbContext _context { get; }
 
         private IWebHostEnvironment _env { get; }
@@ -21,6 +23,11 @@ namespace FiorellaAllProcesses.Areas.Admin.Controllers
         {
             _context = context;
             _env = env;
+            _size = _context.Settings
+                          .Where(s => s.Key == "Size")
+                          .Select(s => s.Value)
+                          .FirstOrDefaultAsync();
+            
         }
 
         public IActionResult Index()
@@ -37,10 +44,12 @@ namespace FiorellaAllProcesses.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Slider slider)
         {
-            if(ModelState["Photo"].ValidationState==ModelValidationState.Invalid) return View();
-            if (slider.Photo.CheckSize(200))
+           
+
+            if (ModelState["Photo"].ValidationState==ModelValidationState.Invalid) return View();
+            if (slider.Photo.CheckSize(await _size))
             {
-                ModelState.AddModelError("Photo", $"Şəkilin fotmatı {200} kb-dan çoxdur");
+                ModelState.AddModelError("Photo", $"Şəkilin fotmatı {_size} kb-dan çoxdur");
                 return View();
             }
 
@@ -86,9 +95,9 @@ namespace FiorellaAllProcesses.Areas.Admin.Controllers
                                             .FirstOrDefaultAsync();
 
             if (ModelState["Photo"].ValidationState == ModelValidationState.Invalid)  return View();
-            if (slider.Photo.CheckSize(200))
+            if (slider.Photo.CheckSize(await _size))
             {
-                ModelState.AddModelError("Photo", $"Şəkilin fotmatı {200} kb-dan çoxdur");
+                ModelState.AddModelError("Photo", $"Şəkilin fotmatı {_size} kb-dan çoxdur");
                 return View();
             }
 
