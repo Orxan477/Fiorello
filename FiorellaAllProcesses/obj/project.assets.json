@@ -8242,11 +8242,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Orxan477\\source\\repos\\FiorellaAllProcesses\\FiorellaAllProcesses\\FiorellaAllProcesses.csproj",
+      "projectUniqueName": "D:\\HP\\Documents\\Private\\Code Academy\\Back-End\\ASP.Net\\FiorellaAllProcesses\\FiorellaAllProcesses\\FiorellaAllProcesses.csproj",
       "projectName": "FiorellaAllProcesses",
-      "projectPath": "C:\\Users\\Orxan477\\source\\repos\\FiorellaAllProcesses\\FiorellaAllProcesses\\FiorellaAllProcesses.csproj",
+      "projectPath": "D:\\HP\\Documents\\Private\\Code Academy\\Back-End\\ASP.Net\\FiorellaAllProcesses\\FiorellaAllProcesses\\FiorellaAllProcesses.csproj",
       "packagesPath": "C:\\Users\\Orxan477\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Orxan477\\source\\repos\\FiorellaAllProcesses\\FiorellaAllProcesses\\obj\\",
+      "outputPath": "D:\\HP\\Documents\\Private\\Code Academy\\Back-End\\ASP.Net\\FiorellaAllProcesses\\FiorellaAllProcesses\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

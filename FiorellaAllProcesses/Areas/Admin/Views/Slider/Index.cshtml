@@ -1,0 +1,68 @@
+﻿@model IEnumerable<Slider>
+@{
+    ViewData["Title"] = "Index";
+    int sliderNum = 1;
+}
+
+<div class="main-panel">
+    <div class="content-wrapper">
+        <div class="row">
+            <div class="col-lg-6 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Slider</h4>
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>№</th>
+                                        <th>Image</th>
+                                        <th>Settings</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var slider in Model)
+                                    {
+                                        <tr>
+                                            <td>@sliderNum</td>
+                                            <td>
+                                                <img src="~/img/@slider.Image" alt="" />
+                                            </td>
+                                            <td>
+                                                <label class="btn btn-primary " asp-action="Detail" asp-route-id="@slider.Id">
+                                                    <i class="mdi mdi-eye"></i>
+                                                </label>
+                                            </td>
+                                            <td>
+                                                <a asp-action="Update" asp-route-id="@slider.Id">
+                                                    <label class="btn btn-warning">
+                                                        <i class="mdi mdi-table-edit"></i>
+                                                    </label>
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <form asp-action="Delete" asp-route-id="@slider.Id" class="d-inline" method="post">
+                                                    <button type="submit" class="btn btn-danger">
+                                                        <i class="mdi mdi-delete"></i>
+                                                    </button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                        sliderNum++;
+                                    }
+
+                                </tbody>
+                            </table>
+                            <br />
+                            <a asp-area="Admin" asp-controller="Slider" asp-action="Create"><label class="btn btn-success d-flex justify-content-center">Create Photo</label></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- content-wrapper ends -->
+    <!-- partial:partials/_footer.html -->
+    @await Component.InvokeAsync("AdminFooter")
+    <!-- partial -->
+</div>

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "5szfIVYqAdQ0sXxb7oxcMvpXt7iKAC96rL0w8Fy9v6OTPSKHTozWfTt3s//U4ooHe8c8He51MihZHENPb7lq7g==",
+  "dgSpecHash": "gUyrxyJQQLllm/eDt+KtPNbQ6VZQR6tVOYemdfSoLD6L1osCDnYquFWGvRELN2xijNssj8fVeBueZbGzMeKbgg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Orxan477\\source\\repos\\FiorellaAllProcesses\\FiorellaAllProcesses\\FiorellaAllProcesses.csproj",
+  "projectFilePath": "D:\\HP\\Documents\\Private\\Code Academy\\Back-End\\ASP.Net\\FiorellaAllProcesses\\FiorellaAllProcesses\\FiorellaAllProcesses.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Orxan477\\.nuget\\packages\\microsoft.aspnetcore.html.abstractions\\2.2.0\\microsoft.aspnetcore.html.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\Orxan477\\.nuget\\packages\\microsoft.aspnetcore.razor\\2.2.0\\microsoft.aspnetcore.razor.2.2.0.nupkg.sha512",
