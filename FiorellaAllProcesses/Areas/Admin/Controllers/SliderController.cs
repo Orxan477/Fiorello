@@ -40,7 +40,7 @@ namespace FiorellaAllProcesses.Areas.Admin.Controllers
             if(ModelState["Photo"].ValidationState==ModelValidationState.Invalid) return View();
             if (slider.Photo.CheckSize(200))
             {
-                ModelState.AddModelError("Photo", $"{200}-den az yukleyin");
+                ModelState.AddModelError("Photo", $"Şəkilin fotmatı {200} kb-dan çoxdur");
                 return View();
             }
 
@@ -88,7 +88,7 @@ namespace FiorellaAllProcesses.Areas.Admin.Controllers
             if (ModelState["Photo"].ValidationState == ModelValidationState.Invalid)  return View();
             if (slider.Photo.CheckSize(200))
             {
-                ModelState.AddModelError("Photo", "200-den az yukleyin");
+                ModelState.AddModelError("Photo", $"Şəkilin fotmatı {200} kb-dan çoxdur");
                 return View();
             }
 
