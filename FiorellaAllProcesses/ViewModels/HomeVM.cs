@@ -19,6 +19,7 @@ namespace FiorellaAllProcesses.ViewModels
         public List<Comment> Comments { get; set; }
         public List<Instagram> Instagrams { get; set; }
         public List<Setting> Settings { get; set; }
+        public List<Сurrency> Сurrency { get; set; }
 
     }
 }

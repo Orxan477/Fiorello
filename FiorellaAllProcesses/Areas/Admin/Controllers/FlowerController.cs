@@ -13,9 +13,9 @@ namespace FiorellaAllProcesses.Areas.Admin.Controllers
     {
             private AppDbContext _context;
 
-            public FlowerController(AppDbContext context)
+        public FlowerController(AppDbContext context)
             {
-                _context = context;
+                _context = context;                   
             }
 
         public async Task<IActionResult> Index()
@@ -33,6 +33,8 @@ namespace FiorellaAllProcesses.Areas.Admin.Controllers
             }
         public IActionResult Create()
         {
+            ViewBag.category = _context.Categories.ToList();
+            ViewBag.currency = _context.Сurrencies.ToList();
             return View();
         }
         [HttpPost]
@@ -41,13 +43,13 @@ namespace FiorellaAllProcesses.Areas.Admin.Controllers
         {
             if (!ModelState.IsValid) return View();
             bool isExist = _context.Products.Any(p => p.Name.Trim()
-                                                          .ToLower() == product.Name.Trim().ToLower());
+                                                            .ToLower() == product.Name.Trim().ToLower());
             if (isExist)
             {
-                ModelState.AddModelError("Name", "Bu Kateqoriya artiq var");
+                ModelState.AddModelError("Name", "Bu Product artiq var");
                 return View();
             }
-            await _context.AddAsync(product);
+            await _context.Products.AddAsync(product);
             await _context.SaveChangesAsync();
             return RedirectToAction("Index", "Flower");
         }
@@ -83,10 +85,6 @@ namespace FiorellaAllProcesses.Areas.Admin.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction("Index", "Product");
         }
-        //public IActionResult Delete()
-        //{
-        //    return View();
-        //}
 
         [HttpPost]
         [ValidateAntiForgeryToken]

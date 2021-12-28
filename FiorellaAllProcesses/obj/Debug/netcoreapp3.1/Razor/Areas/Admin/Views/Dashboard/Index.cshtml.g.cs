@@ -26,8 +26,15 @@ using FiorellaAllProcesses.ViewModels;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 3 "D:\HP\Documents\Private\Code Academy\Back-End\ASP.Net\FiorellaAllProcesses\FiorellaAllProcesses\Areas\Admin\Views\_ViewImports.cshtml"
+using FiorellaAllProcesses.ViewModels.Sliders;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"8547f7292d9ee1c278ff235592a6abf15a95d3a1", @"/Areas/Admin/Views/Dashboard/Index.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"b273290a201f9d4bde57a8450350f4607044517c", @"/Areas/Admin/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"6d105896dc3ed8f0ba988371fba3354cbcfdd907", @"/Areas/Admin/Views/_ViewImports.cshtml")]
     public class Areas_Admin_Views_Dashboard_Index : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<HomeVM>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("asp-action", "Update", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -131,7 +138,7 @@ WriteAttributeValue("", 1313, kat.Id, 1313, 7, false);
                                             </td>
                                             <td>
                                                 ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8547f7292d9ee1c278ff235592a6abf15a95d3a18871", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8547f7292d9ee1c278ff235592a6abf15a95d3a19133", async() => {
                 WriteLiteral(@"
                                                     <label class=""btn btn-warning"">
                                                         <i class=""mdi mdi-table-edit""></i>
@@ -166,7 +173,7 @@ WriteAttributeValue("", 1313, kat.Id, 1313, 7, false);
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                                            </td>\r\n                                            <td>\r\n                                                ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8547f7292d9ee1c278ff235592a6abf15a95d3a111551", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8547f7292d9ee1c278ff235592a6abf15a95d3a111813", async() => {
                 WriteLiteral(@"
                                                     <button type=""submit"" class=""btn btn-danger"">
                                                         <i class=""mdi mdi-delete""></i>
@@ -215,7 +222,7 @@ WriteAttributeValue("", 1313, kat.Id, 1313, 7, false);
 #line hidden
 #nullable disable
             WriteLiteral("\r\n                                </tbody>\r\n                            </table>\r\n                            <br />\r\n                            ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8547f7292d9ee1c278ff235592a6abf15a95d3a115243", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8547f7292d9ee1c278ff235592a6abf15a95d3a115505", async() => {
                 WriteLiteral("<label class=\"btn btn-success d-flex justify-content-center\">Create Category</label>");
             }
             );
