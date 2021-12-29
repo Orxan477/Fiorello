@@ -11,6 +11,7 @@
                     <h4 class="card-title"></h4>
                     <form class="forms-sample" method="post" enctype="multipart/form-data">
                         <div class="form-group">
+                            <img src="~/img/@Model.Image" width="470px" height="200px" class="d-block mb-3"alt="" />
                             <label asp-for="Photo"></label>
                             <input asp-for="Photo" class="form-control" accept="image/*" />
                             <span class="text-danger" asp-validation-for="Photo"></span>

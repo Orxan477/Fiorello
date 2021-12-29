@@ -19,23 +19,32 @@ namespace FiorellaAllProcesses.Areas.Admin.Controllers
         private AppDbContext _context { get; }
 
         private IWebHostEnvironment _env { get; }
+
+        private int _sCount;
+        private int _size;
         private string _errorMessageValid;
         private string _errorMessageCount;
-
-        private Task<string> _size;
 
         public SliderController(AppDbContext context, IWebHostEnvironment env)
         {
             _context = context;
             _env = env;
-            _size = _context.Settings
-                          .Where(s => s.Key == "Size")
-                          .Select(s => s.Value)
-                          .FirstOrDefaultAsync();
+            _sCount = Setting("Slider Count");
+            _size = Setting("Size");
+        }
+        private int Setting(string key)
+        {
+            string dbSetting = _context.Settings
+                             .Where(s => s.Key == key)
+                             .Select(s => s.Value)
+                             .FirstOrDefault();
+            int option = int.Parse(dbSetting);
+            return (option);
         }
 
         public IActionResult Index()
         {
+            ViewBag.say = _sCount;
             return View(_context.Sliders);
         }
 
@@ -67,6 +76,7 @@ namespace FiorellaAllProcesses.Areas.Admin.Controllers
             //await _context.Sliders.AddAsync(slider);
             //await _context.SaveChangesAsync();
             #endregion
+
             if (!CheckImageCount(multipleSliderVM.Photos))
             {
                 ModelState.AddModelError("Photos", _errorMessageCount);
@@ -94,11 +104,10 @@ namespace FiorellaAllProcesses.Areas.Admin.Controllers
         }
         private bool CheckImageCount(List<IFormFile> photos)
         {
-            int maxImageUpload = 5,
+            int maxImageUpload = _sCount,
                dbSliderImageCount = _context.Sliders.Count(),
                upload = maxImageUpload - dbSliderImageCount;
-
-            if (dbSliderImageCount == 5)
+            if (dbSliderImageCount == maxImageUpload)
             {
                 _errorMessageCount=$"Slider-də şəkil sayı maximumdur";
                 return false;
@@ -114,9 +123,9 @@ namespace FiorellaAllProcesses.Areas.Admin.Controllers
         {
             foreach (var photo in photos)
             {
-                if (photo.CheckSize(200))
+                if (photo.CheckSize(_size))
                 {
-                    _errorMessageValid=$"{photo.FileName} adlı şəkilin formatı {200} kb-dan çoxdur";
+                    _errorMessageValid=$"{photo.FileName} adlı şəkilin formatı {_size} kb-dan çoxdur";
                     return false;
                 }
 

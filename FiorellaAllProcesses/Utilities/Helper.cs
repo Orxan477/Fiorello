@@ -1,14 +1,11 @@
-﻿using FiorellaAllProcesses.Models;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
-using System.IO;
-using System.Threading.Tasks;
+﻿using System.IO;
+using System.Linq;
 
 namespace FiorellaAllProcesses.Utilities
 {
     public static class Helper
     {
-         public static void RemoveFile(string root,string folder,string image)
+        public static void RemoveFile(string root,string folder,string image)
          {
             string path = Path.Combine(root, folder, image);
             if (File.Exists(path))
@@ -16,6 +13,7 @@ namespace FiorellaAllProcesses.Utilities
                 File.Delete(path);
             }
          }
+
         
     }
 }

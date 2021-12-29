@@ -54,7 +54,10 @@
                                 </tbody>
                             </table>
                             <br />
-                            <a asp-area="Admin" asp-controller="Slider" asp-action="Create"><label class="btn btn-success d-flex justify-content-center">Create Photo</label></a>
+                            @if (sliderNum-1 != ViewBag.Say)
+                             {
+                                <a asp-area="Admin" asp-controller="Slider" asp-action="Create"><label class="btn btn-success d-flex justify-content-center">Create Photo</label></a>
+                             }
                         </div>
                     </div>
                 </div>
