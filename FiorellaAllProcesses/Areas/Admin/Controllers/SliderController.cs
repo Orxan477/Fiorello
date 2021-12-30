@@ -32,7 +32,7 @@ namespace FiorellaAllProcesses.Areas.Admin.Controllers
             _sCount = Setting("Slider Count");
             _size = Setting("Size");
         }
-        private int Setting(string key)
+        public int Setting(string key)
         {
             string dbSetting = _context.Settings
                              .Where(s => s.Key == key)
@@ -77,19 +77,20 @@ namespace FiorellaAllProcesses.Areas.Admin.Controllers
             //await _context.SaveChangesAsync();
             #endregion
 
+            if (ModelState["Photos"].ValidationState == ModelValidationState.Invalid) return View();
+
             if (!CheckImageCount(multipleSliderVM.Photos))
             {
                 ModelState.AddModelError("Photos", _errorMessageCount);
                 return View();
             }
 
-            if (ModelState["Photos"].ValidationState == ModelValidationState.Invalid) return View();
-
             if (!CheckImageValid(multipleSliderVM.Photos))
             {
                 ModelState.AddModelError("Photos", _errorMessageValid);
                 return View();
             }
+
             foreach (var photo in multipleSliderVM.Photos)
             {
                 string fileName = await photo.SaveFileAsync(_env.WebRootPath, "img");

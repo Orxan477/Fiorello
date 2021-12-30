@@ -8,7 +8,7 @@ namespace FiorellaAllProcesses.ViewModels
         public List<Slider> Sliders { get; set; }
         public HomeIntro HomeIntro{ get; set; }
         public List<Category> Categories { get; set; }
-        public List<Product> Products { get; set; }
+        public List<Models.Product> Products { get; set; }
         public Сurrency Сurrencies { get; set; }
         public Valentine Valentines { get; set; }
         public List<ValentineOption> ValentineOption { get; set; }

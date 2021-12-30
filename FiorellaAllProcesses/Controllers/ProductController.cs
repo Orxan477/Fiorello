@@ -14,7 +14,7 @@ namespace FiorellaAllProcesses.Controllers
     {
         private AppDbContext _context { get; }
         private int _proCount;
-        private object _take;
+        private object _productTake;
 
         public ProductController(AppDbContext context)
         {
@@ -22,6 +22,7 @@ namespace FiorellaAllProcesses.Controllers
             _proCount = _context.Products
                                .Where(p => p.IsDeleted == false)
                                .Count();
+            //_take = Setting("Product Take");
         }
         public IActionResult Index()
         {
@@ -30,10 +31,10 @@ namespace FiorellaAllProcesses.Controllers
         }
         public IActionResult LoadProduct(int skip)
         {
-            _take = _context.Settings
-                           .Where(s => s.Key == "Take")
-                           .Select(s => s.Value)
-                           .FirstOrDefault();
+            _productTake = _context.Settings
+                       .Where(s => s.Key == "Product Take")
+                       .Select(s => s.Value)
+                       .FirstOrDefault();
 
             if (_proCount == skip)
             {
@@ -44,7 +45,7 @@ namespace FiorellaAllProcesses.Controllers
                 });
             }
 
-            return ViewComponent("Product", new { take = _take, skip = skip });
+            return ViewComponent("Product", new { take = _productTake, skip = skip });
         }
         [HttpPost]
         [AutoValidateAntiforgeryToken]

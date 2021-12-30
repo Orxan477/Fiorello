@@ -1,8 +1,12 @@
 ﻿using FiorellaAllProcesses.DAL;
 using FiorellaAllProcesses.Models;
 using FiorellaAllProcesses.ViewModels;
+using FiorellaAllProcesses.ViewModels.Product;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -11,36 +15,93 @@ namespace FiorellaAllProcesses.Areas.Admin.Controllers
     [Area("Admin")]
     public class FlowerController : Controller
     {
-            private AppDbContext _context;
+        private AppDbContext _context;
+        private int _takeProductCount;
 
         public FlowerController(AppDbContext context)
             {
-                _context = context;                   
+             _context = context;
+            _takeProductCount = Setting("Take Product Count");
             }
-
-        public async Task<IActionResult> Index()
-            {
-                HomeVM homeVM = new HomeVM
-                {
-                    Products = await _context.Products
-                                           .Where(p => p.IsDeleted == false)
-                                           .Include(p => p.Category)
-                                           .Include(p => p.Currency)
-                                           .Include(p => p.ProductImage)
-                                           .ToListAsync(),
-                };
-                return View(homeVM);
-            }
-        public IActionResult Create()
+        public int Setting(string key)
         {
-            ViewBag.category = _context.Categories.ToList();
-            ViewBag.currency = _context.Сurrencies.ToList();
+            string dbSetting = _context.Settings
+                             .Where(s => s.Key == key)
+                             .Select(s => s.Value)
+                             .FirstOrDefault();
+            int option = int.Parse(dbSetting);
+            return (option);
+        }
+        public async Task<IActionResult> Index(int page=1)
+        {
+            ViewBag.takeProductCount = _takeProductCount;
+            var products = await _context.Products
+                                          .Where(p => !p.IsDeleted)
+                                          .OrderByDescending(p=>p.Id)
+                                          .Skip((page-1)* _takeProductCount)
+                                          .Take(_takeProductCount)
+                                          .Include(p => p.Category)
+                                          .Include(p => p.Currency)
+                                          .Include(p => p.ProductImage)
+                                          .ToListAsync();
+            var productsVM = GetProductList(products);
+            int pageCount = GetPageCount(_takeProductCount);
+            Paginate<ProductListVM> model = new Paginate<ProductListVM>(productsVM,page, pageCount);
+            return View(model);
+        }
+        private int GetPageCount(int take)
+        {
+            var prodCount = _context.Products.Where(p => !p.IsDeleted).Count();
+            return (int)Math.Ceiling((decimal)prodCount / take);
+        }
+        private List<ProductListVM> GetProductList(List<Product> products)
+        {
+            List<ProductListVM> model = new List<ProductListVM>();
+            foreach (var item in products)
+            {
+                var product = new ProductListVM
+                {
+                    Id = item.Id,
+                    Name=item.Name,
+                    Price=item.Price,
+                    Currency=item.Currency.Character,
+                    CategoryName=item.Category.Name,
+                    Image= item.ProductImage.FirstOrDefault().Image,
+                };
+                model.Add(product);
+            }
+            return model;
+        }
+        public async Task<IActionResult> Create()
+        {
+            await GetSelectedItemAsync();
             return View();
         }
+
+        #region  Create- Post
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> Create(Product product)
+        //{
+        //    if (!ModelState.IsValid) return View();
+        //    bool isExist = _context.Products.Any(p => p.Name.Trim()
+        //                                                    .ToLower() == product.Name.Trim().ToLower());
+        //    if (isExist)
+        //    {
+        //        ModelState.AddModelError("Name", "Bu Product artiq var");
+        //        return View();
+        //    }
+        //    await _context.Products.AddAsync(product);
+        //    await _context.SaveChangesAsync();
+        //    return RedirectToAction("Index", "Flower");
+        //}
+        #endregion
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Product product)
+        public async Task<IActionResult> Create(CreateProductVM product)
         {
+            await GetSelectedItemAsync();
             if (!ModelState.IsValid) return View();
             bool isExist = _context.Products.Any(p => p.Name.Trim()
                                                             .ToLower() == product.Name.Trim().ToLower());
@@ -49,9 +110,16 @@ namespace FiorellaAllProcesses.Areas.Admin.Controllers
                 ModelState.AddModelError("Name", "Bu Product artiq var");
                 return View();
             }
-            await _context.Products.AddAsync(product);
+            //await _context.Products.AddAsync(product);
             await _context.SaveChangesAsync();
             return RedirectToAction("Index", "Flower");
+        }
+        private async Task GetSelectedItemAsync()
+        {
+            ViewBag.category = new SelectList(await _context.Categories
+                                                             .Where(c => c.IsDeleted == false)
+                                                             .ToListAsync(), "Id", "Name");
+            ViewBag.currency = new SelectList(await _context.Сurrencies.ToListAsync(), "Id", "Character");
         }
         public IActionResult Update(int id)
         {
