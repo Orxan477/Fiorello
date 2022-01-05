@@ -78,30 +78,12 @@ namespace FiorellaAllProcesses.Areas.Admin.Controllers
             return View();
         }
 
+        
         #region  Create- Post
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> Create(Product product)
-        //{
-        //    if (!ModelState.IsValid) return View();
-        //    bool isExist = _context.Products.Any(p => p.Name.Trim()
-        //                                                    .ToLower() == product.Name.Trim().ToLower());
-        //    if (isExist)
-        //    {
-        //        ModelState.AddModelError("Name", "Bu Product artiq var");
-        //        return View();
-        //    }
-        //    await _context.Products.AddAsync(product);
-        //    await _context.SaveChangesAsync();
-        //    return RedirectToAction("Index", "Flower");
-        //}
-        #endregion
-
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(CreateProductVM product)
+        public async Task<IActionResult> Create(Product product)
         {
-            await GetSelectedItemAsync();
             if (!ModelState.IsValid) return View();
             bool isExist = _context.Products.Any(p => p.Name.Trim()
                                                             .ToLower() == product.Name.Trim().ToLower());
@@ -110,10 +92,32 @@ namespace FiorellaAllProcesses.Areas.Admin.Controllers
                 ModelState.AddModelError("Name", "Bu Product artiq var");
                 return View();
             }
-            //await _context.Products.AddAsync(product);
+            await _context.Products.AddAsync(product);
             await _context.SaveChangesAsync();
             return RedirectToAction("Index", "Flower");
         }
+        #endregion
+
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        #region PostVM
+
+        //public async Task<IActionResult> Create(CreateProductVM product)
+        //{
+        //    await GetSelectedItemAsync();
+        //    if (!ModelState.IsValid) return View();
+        //    bool isExist = _context.Products.Any(p => p.Name.Trim()
+        //                                                    .ToLower() == product.Name.Trim().ToLower());
+        //    if (isExist)
+        //    {
+        //        ModelState.AddModelError("Name", "Bu Product artiq var");
+        //        return View();
+        //    }
+        //    //await _context.Products.AddAsync(product);
+        //    await _context.SaveChangesAsync();
+        //    return RedirectToAction("Index", "Flower");
+        //}
+        #endregion
         private async Task GetSelectedItemAsync()
         {
             ViewBag.category = new SelectList(await _context.Categories
