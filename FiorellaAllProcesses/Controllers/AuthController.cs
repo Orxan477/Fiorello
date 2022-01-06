@@ -37,7 +37,6 @@ namespace FiorellaAllProcesses.Controllers
                 Email=register.Email,
                 UserName=register.Username,
             };
-            //return Json(newUser);
             IdentityResult identityResult = await _userManager.CreateAsync(newUser, register.Password);
             if (identityResult.Succeeded)
             {
@@ -47,7 +46,7 @@ namespace FiorellaAllProcesses.Controllers
                 string link = Url.Action(nameof(VerifyEmail),"Auth", new { userId = newUser.Id, code }
                                                                         , Request.Scheme, Request.Host.ToString());
 
-                await _emailService.SendAsync("orxanqanbarov73@gmail.com", "email verify", $"<a href=\"{link}\">Verify Email</a>", true);
+                await _emailService.SendAsync("orxanqanbarov73@gmail.com", "Fiorello Email Verify", $"<a href=\"{link}\">Verify Email</a>", true);
 
                 return RedirectToAction("EmailVerification", "Auth");
             }
@@ -61,13 +60,18 @@ namespace FiorellaAllProcesses.Controllers
                 return View(register);
             }
         }
+        //[HttpGet]
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
         public async Task<IActionResult> VerifyEmail(string userId,string code)
         {
             var user = await _userManager.FindByIdAsync(userId);
             if (user == null) BadRequest();
            var result= await _userManager.ConfirmEmailAsync(user,code);
 
-            if (result.Succeeded) return RedirectToAction(nameof(Login));// return RedirectToAction(nameof(VerifyEmail));
+            if (result.Succeeded) //return RedirectToAction(nameof(Login));
+                                  return Content("Thank you verify Email.");
+                                  //return RedirectToAction(nameof(VerifyEmail));
 
             else return BadRequest();
         }
