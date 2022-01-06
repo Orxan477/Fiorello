@@ -88,7 +88,7 @@ namespace FiorellaAllProcesses.Controllers
         public async Task<IActionResult> Login(LoginVm loginVm)
         {
             if (!ModelState.IsValid) return View(loginVm);
-            ApplicationUser user = await _userManager.FindByNameAsync(loginVm.Email);
+            ApplicationUser user = await _userManager.FindByEmailAsync(loginVm.Email.ToString());
             if (user != null)
             {
                 var result = await _signInManager.PasswordSignInAsync(user, loginVm.Password, false, false);
