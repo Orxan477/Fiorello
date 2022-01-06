@@ -303,3 +303,11 @@ D:\HP\Documents\Private\Code Academy\Back-End\ASP.Net\FiorellaAllProcesses\Fiore
 D:\HP\Documents\Private\Code Academy\Back-End\ASP.Net\FiorellaAllProcesses\FiorellaAllProcesses\obj\Debug\netcoreapp3.1\Razor\Views\Auth\Register.cshtml.g.cs
 D:\HP\Documents\Private\Code Academy\Back-End\ASP.Net\FiorellaAllProcesses\FiorellaAllProcesses\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_ValidationScriptsPartial.cshtml.g.cs
 D:\HP\Documents\Private\Code Academy\Back-End\ASP.Net\FiorellaAllProcesses\FiorellaAllProcesses\obj\Debug\netcoreapp3.1\Razor\Views\Auth\Login.cshtml.g.cs
+D:\HP\Documents\Private\Code Academy\Back-End\ASP.Net\FiorellaAllProcesses\FiorellaAllProcesses\obj\Debug\netcoreapp3.1\Razor\Views\Auth\EmailVerification.cshtml.g.cs
+D:\HP\Documents\Private\Code Academy\Back-End\ASP.Net\FiorellaAllProcesses\FiorellaAllProcesses\obj\Debug\netcoreapp3.1\Razor\Views\Auth\VerifyEmail.cshtml.g.cs
+D:\HP\Documents\Private\Code Academy\Back-End\ASP.Net\FiorellaAllProcesses\FiorellaAllProcesses\bin\Debug\netcoreapp3.1\MailKit.dll
+D:\HP\Documents\Private\Code Academy\Back-End\ASP.Net\FiorellaAllProcesses\FiorellaAllProcesses\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyInjection.dll
+D:\HP\Documents\Private\Code Academy\Back-End\ASP.Net\FiorellaAllProcesses\FiorellaAllProcesses\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+D:\HP\Documents\Private\Code Academy\Back-End\ASP.Net\FiorellaAllProcesses\FiorellaAllProcesses\bin\Debug\netcoreapp3.1\MimeKit.dll
+D:\HP\Documents\Private\Code Academy\Back-End\ASP.Net\FiorellaAllProcesses\FiorellaAllProcesses\bin\Debug\netcoreapp3.1\NETCore.MailKit.dll
+D:\HP\Documents\Private\Code Academy\Back-End\ASP.Net\FiorellaAllProcesses\FiorellaAllProcesses\bin\Debug\netcoreapp3.1\BouncyCastle.Crypto.dll

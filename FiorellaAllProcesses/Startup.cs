@@ -7,6 +7,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using NETCore.MailKit.Extensions;
+using NETCore.MailKit.Infrastructure.Internal;
 using System;
 
 namespace FiorellaAllProcesses
@@ -27,6 +29,13 @@ namespace FiorellaAllProcesses
                 .AddEntityFrameworkStores<AppDbContext>()
                 .AddDefaultTokenProviders();
 
+            var mailKitOptions = Configuration.GetSection("Email").Get<MailKitOptions>();
+
+            services.AddMailKit(config=>
+            {
+                config.UseMailKit(mailKitOptions);
+            });
+
             services.Configure<IdentityOptions>(identityOptions =>
             {
                 identityOptions.Password.RequiredLength = 8;
@@ -35,6 +44,7 @@ namespace FiorellaAllProcesses
                 identityOptions.Password.RequireLowercase = true;
                 identityOptions.Password.RequireLowercase = true;
 
+                identityOptions.SignIn.RequireConfirmedEmail = true;
                 identityOptions.User.RequireUniqueEmail = true;
 
                 identityOptions.Lockout.MaxFailedAccessAttempts = 3;
@@ -50,6 +60,8 @@ namespace FiorellaAllProcesses
             {
                 options.UseSqlServer(Configuration["ConnectionStrings:Default"]);
             });
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -3,6 +3,7 @@ using FiorellaAllProcesses.Models;
 using FiorellaAllProcesses.ViewModels.Auth;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using NETCore.MailKit.Core;
 using System.Threading.Tasks;
 
 namespace FiorellaAllProcesses.Controllers
@@ -11,15 +12,15 @@ namespace FiorellaAllProcesses.Controllers
     {
         private UserManager<ApplicationUser> _userManager;
         private SignInManager<ApplicationUser> _signInManager;
-        private AppDbContext _context;
+        private IEmailService _emailService;
 
         public AuthController(UserManager<ApplicationUser> userManager,
                               SignInManager<ApplicationUser> signInManager,
-                              AppDbContext context)
+                              IEmailService emailService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
-            _context = context;
+            _emailService = emailService;
         }
         public IActionResult Register()
         {
@@ -36,18 +37,43 @@ namespace FiorellaAllProcesses.Controllers
                 Email=register.Email,
                 UserName=register.Username,
             };
+            //return Json(newUser);
             IdentityResult identityResult = await _userManager.CreateAsync(newUser, register.Password);
-            if (!identityResult.Succeeded)
+            if (identityResult.Succeeded)
+            {
+                Task<string> codeData = _userManager.GenerateEmailConfirmationTokenAsync(newUser);
+                string code = codeData.Result;
+
+                string link = Url.Action(nameof(VerifyEmail),"Auth", new { userId = newUser.Id, code }
+                                                                        , Request.Scheme, Request.Host.ToString());
+
+                await _emailService.SendAsync("orxanqanbarov73@gmail.com", "email verify", $"<a href=\"{link}\">Verify Email</a>", true);
+
+                return RedirectToAction("EmailVerification", "Auth");
+            }
+            
+            else
             {
                 foreach (var error in identityResult.Errors)
                 {
                     ModelState.AddModelError("", error.Description);
-                    
                 }
                 return View(register);
             }
-            await _signInManager.SignInAsync(newUser,false);
-            return RedirectToAction("Index","Home");
+        }
+        public async Task<IActionResult> VerifyEmail(string userId,string code)
+        {
+            var user = await _userManager.FindByIdAsync(userId);
+            if (user == null) BadRequest();
+           var result= await _userManager.ConfirmEmailAsync(user,code);
+
+            if (result.Succeeded) return RedirectToAction(nameof(Login));// return RedirectToAction(nameof(VerifyEmail));
+
+            else return BadRequest();
+        }
+        public IActionResult EmailVerification()
+        {
+            return View();
         }
         public IActionResult Login()
         {
@@ -57,9 +83,17 @@ namespace FiorellaAllProcesses.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginVm loginVm)
         {
-            return Json(_context.Users);
             if (!ModelState.IsValid) return View(loginVm);
-            //if(loginVm.Email.Trim().ToLower()==_context.Users.)
+            ApplicationUser user = await _userManager.FindByNameAsync(loginVm.Email);
+            if (user != null)
+            {
+                var result = await _signInManager.PasswordSignInAsync(user, loginVm.Password, false, false);
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("Index","Home");
+                }
+            }
+            return View(loginVm);
 
         }
         public async Task<IActionResult> Logout()
