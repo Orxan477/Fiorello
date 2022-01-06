@@ -1,5 +1,4 @@
-﻿using FiorellaAllProcesses.DAL;
-using FiorellaAllProcesses.Models;
+﻿using FiorellaAllProcesses.Models;
 using FiorellaAllProcesses.ViewModels.Auth;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -38,43 +37,72 @@ namespace FiorellaAllProcesses.Controllers
                 UserName=register.Username,
             };
             IdentityResult identityResult = await _userManager.CreateAsync(newUser, register.Password);
+
             if (identityResult.Succeeded)
             {
-                Task<string> codeData = _userManager.GenerateEmailConfirmationTokenAsync(newUser);
-                string code = codeData.Result;
+                var code =await  _userManager.GenerateEmailConfirmationTokenAsync(newUser);
+                //var code = codeData.Result;
 
-                string link = Url.Action(nameof(VerifyEmail),"Auth", new { userId = newUser.Id, code }
-                                                                        , Request.Scheme, Request.Host.ToString());
+                var link = Url.Action(nameof(VerifyEmail), "Auth",
+                                                new { userid = newUser.Id, code }, Request.Scheme, Request.Host.ToString());
 
-                await _emailService.SendAsync("orxanqanbarov73@gmail.com", "Fiorello Email Verify", $"<a href=\"{link}\">Verify Email</a>", true);
-
+                await _emailService.SendAsync("orxanqanbarov73@gmail.com", "Confirm", $"<a href={link}>Verify Link</a>", true);
                 return RedirectToAction("EmailVerification", "Auth");
             }
-            
-            else
-            {
-                foreach (var error in identityResult.Errors)
-                {
-                    ModelState.AddModelError("", error.Description);
-                }
-                return View(register);
-            }
+            return View();
+            #region MyRegion
+
+            //if (identityResult.Succeeded)
+            //{
+            //    Task<string> codeData = _userManager.GenerateEmailConfirmationTokenAsync(newUser);
+            //    string code = codeData.Result;
+
+            //    string link = Url.Action(nameof(VerifyEmail),"Auth", new { userId = newUser.Id, code },
+            //                                                           Request.Scheme, Request.Host.ToString());
+
+            //    await _emailService.SendAsync("orxanqanbarov73@gmail.com", "Fiorello Email Verify", $"<a href=\"{link}\">Verify Email</a>",true+);
+
+            //    return RedirectToAction("EmailVerification", "Auth");
+            //}
+
+            //else
+            //{
+            //    foreach (var error in identityResult.Errors)
+            //    {
+            //        ModelState.AddModelError("", error.Description);
+            //    }
+            //    return View(register);
+            //}
+            #endregion
+
         }
-        //[HttpGet]
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        public async Task<IActionResult> VerifyEmail(string userId,string code)
+        
+        public async Task<IActionResult> VerifyEmail(string userid,string code)
         {
-            var user = await _userManager.FindByIdAsync(userId);
-            if (user == null) BadRequest();
-           var result= await _userManager.ConfirmEmailAsync(user,code);
-
-            if (result.Succeeded) //return RedirectToAction(nameof(Login));
-                                  return Content("Thank you verify Email.");
-                                  //return RedirectToAction(nameof(VerifyEmail));
-
+            var user = await _userManager.FindByIdAsync(userid);
+            if (user == null) return BadRequest("User Could Not Found");
+            var result =await _userManager.ConfirmEmailAsync(user, code);
+            if (result.Succeeded)
+            {
+                return View();
+            }
             else return BadRequest();
         }
+        //public async Task<IActionResult> VerifyEmail(string userId,string code)
+        //{
+        //    var user = await _userManager.FindByIdAsync(userId);
+        //    if (user == null) BadRequest();
+        //   var result= await _userManager.ConfirmEmailAsync(user,code);
+
+        //    if (result.Succeeded)
+        //    {
+        //        return View();
+        //    }
+        //    else
+        //    {
+        //        return BadRequest();
+        //    }
+        //}
         public IActionResult EmailVerification()
         {
             return View();
@@ -91,11 +119,21 @@ namespace FiorellaAllProcesses.Controllers
             ApplicationUser user = await _userManager.FindByEmailAsync(loginVm.Email.ToString());
             if (user != null)
             {
-                var result = await _signInManager.PasswordSignInAsync(user, loginVm.Password, false, false);
+                var result = await _signInManager.PasswordSignInAsync(user, loginVm.Password, loginVm.RemembeMe, true);
+
                 if (result.Succeeded)
                 {
+                    await _signInManager.SignInAsync(user, false);
                     return RedirectToAction("Index","Home");
                 }
+                //else
+                //{
+                //    foreach (var error in user.Errors)
+                //    {
+                //        ModelState.AddModelError("", error.Description);
+                //    }
+                //    return View(loginVm);
+                //}
             }
             return View(loginVm);
 
