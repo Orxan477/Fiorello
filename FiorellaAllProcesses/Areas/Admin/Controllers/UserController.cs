@@ -4,7 +4,6 @@ using FiorellaAllProcesses.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -32,7 +31,7 @@ namespace FiorellaAllProcesses.Areas.Admin.Controllers
             model = _userManager.Users.Select(u => new UserVM
             {
                 Name = u.Fullname,
-                Email = u.Email,
+                Email = u.Email, 
             }).ToList();
             return View(model);
         }

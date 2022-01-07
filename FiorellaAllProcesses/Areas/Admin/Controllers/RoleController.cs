@@ -25,8 +25,8 @@ namespace FiorellaAllProcesses.Areas.Admin.Controllers
         }
         public IActionResult Index()
         {
-            List<UserVM> model = new List<UserVM>();
-            model =  _roleManager.Roles.Select(r => new UserVM
+            List<RoleVM> model = new List<RoleVM>();
+            model =  _roleManager.Roles.Select(r => new RoleVM
             {
                 RoleName = r.Name,
             }).ToList();

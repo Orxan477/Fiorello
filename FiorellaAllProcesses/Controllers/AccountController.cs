@@ -116,22 +116,17 @@ namespace FiorellaAllProcesses.Controllers
                 return View(loginVm);
             }
 
-
-            if (result.Succeeded)
-            {
-                //await _signInManager.SignInAsync(user, loginVm.RememberMe);
-                if (ReturnUrl != null)
-                {
-                    return LocalRedirect(ReturnUrl);
-                }
-                return RedirectToAction("Index", "Home");
-            }
-            else
+            if (!result.Succeeded)
             {
                 ModelState.AddModelError(string.Empty, "Email and Password is Wrong");
                 return View(loginVm);
             }
-
+            //await _signInManager.SignInAsync(user, loginVm.RememberMe);
+            if (ReturnUrl != null)
+            {
+                return LocalRedirect(ReturnUrl);
+            }
+            return RedirectToAction("Index", "Home");
         }
         public async Task<IActionResult> Logout()
         {
