@@ -2,6 +2,7 @@
 using FiorellaAllProcesses.Models;
 using FiorellaAllProcesses.Utilities;
 using FiorellaAllProcesses.ViewModels.Sliders;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -14,6 +15,7 @@ using System.Threading.Tasks;
 namespace FiorellaAllProcesses.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "Admin")]
     public class SliderController : Controller
     {
         private AppDbContext _context { get; }

@@ -1,0 +1,46 @@
+﻿@model IEnumerable<RoleVM>
+@{
+    ViewData["Title"] = "Role";
+    int roleNum = 1;
+}
+
+<div class="main-panel">
+    <div class="content-wrapper">
+        <div class="row">
+            <div class="col-lg-5 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Role Name</h4>
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>№</th>
+                                        <th>Name</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var role in Model)
+                                    {
+                                        <tr>
+                                            <td>@roleNum</td>
+                                            <td>@role.RoleName</td>
+                                        </tr>
+                                        roleNum++;
+                                    }
+
+                                </tbody>
+                            </table>
+                            <br />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- content-wrapper ends -->
+    <!-- partial:partials/_footer.html -->
+    @await Component.InvokeAsync("AdminFooter")
+    <!-- partial -->
+</div>
+

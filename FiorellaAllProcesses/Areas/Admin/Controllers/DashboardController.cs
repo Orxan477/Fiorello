@@ -1,6 +1,7 @@
 ﻿using FiorellaAllProcesses.DAL;
 using FiorellaAllProcesses.Models;
 using FiorellaAllProcesses.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 namespace FiorellaAllProcesses.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles ="Admin")]
     public class DashboardController : Controller
     {
         private AppDbContext _context;

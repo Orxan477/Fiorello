@@ -29,9 +29,10 @@
             <div class="row w-100 m-0">
                 <div class="content-wrapper full-page-wrapper d-flex align-items-center auth login-bg">
                     <div class="card col-lg-4 mx-auto">
-                        <div asp-validation-summary="ModelOnly"></div>
+                        
                         <div class="card-body px-5 py-5">
                             <h3 class="card-title text-left mb-3">Login</h3>
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                             <form method="post">
                                 <div class="form-group">
                                     <label asp-for="Email"></label>
@@ -44,7 +45,7 @@
                                     <span asp-validation-for="Password" class="text-danger"></span>
                                 </div>
                                 <div class="form-group">
-                                  Remember Me: <input asp-for="RemembeMe">
+                                    Remember Me: <input asp-for="RememberMe">
                                 </div>
                                 <div class="text-center">
                                     <button type="submit" class="btn btn-primary btn-block enter-btn">Login</button>
@@ -57,7 +58,7 @@
                                         <i class="mdi mdi-google-plus"></i> Google plus
                                     </button>
                                 </div>
-                                <p class="sign-up">Don't have an Account?<a asp-controller="Auth" asp-action="Register"> Sign Up</a></p>
+                                <p class="sign-up">Don't have an Account?<a asp-controller="Account" asp-action="Register"> Sign Up</a></p>
                             </form>
                         </div>
                     </div>

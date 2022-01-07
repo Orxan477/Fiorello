@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace FiorellaAllProcesses.ViewModels.Auth
+namespace FiorellaAllProcesses.ViewModels.Account
 {
     public class RegisterVM
     {

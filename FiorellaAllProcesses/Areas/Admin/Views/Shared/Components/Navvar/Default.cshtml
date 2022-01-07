@@ -152,7 +152,12 @@
                 <a class="nav-link" id="profileDropdown" href="#" data-toggle="dropdown">
                     <div class="navbar-profile">
                         <img class="img-xs rounded-circle" src="~/Admin/assets/images/faces/200089900454_175657.jpg" alt="">
-                        <p class="mb-0 d-none d-sm-block navbar-profile-name">Orkhan Ganbarov</p>
+                        <p class="mb-0 d-none d-sm-block navbar-profile-name">
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <h4>@User.Identity.Name</h4>
+                            }
+                        </p>
                         <i class="mdi mdi-menu-down d-none d-sm-block"></i>
                     </div>
                 </a>
@@ -177,11 +182,12 @@
                             </div>
                         </div>
                         <div class="preview-item-content">
-                            <p class="preview-subject mb-1">Log out</p>
+                            <p class="preview-subject mb-1">
+                                <a  asp-controller="Account" asp-action="Logout" class="d-flex">Logout</a>
+                            </p>
                         </div>
                     </a>
                     <div class="dropdown-divider"></div>
-                    <p class="p-3 mb-0 text-center">Advanced settings</p>
                 </div>
             </li>
         </ul>

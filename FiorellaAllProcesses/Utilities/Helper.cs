@@ -1,5 +1,4 @@
 ﻿using System.IO;
-using System.Linq;
 
 namespace FiorellaAllProcesses.Utilities
 {
@@ -15,5 +14,12 @@ namespace FiorellaAllProcesses.Utilities
          }
 
         
+    }
+
+    public enum UserRoles
+    {
+        Admin,
+        Member,
+        Moderator
     }
 }

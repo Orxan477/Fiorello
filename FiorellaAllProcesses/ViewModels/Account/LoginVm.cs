@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace FiorellaAllProcesses.ViewModels.Auth
+namespace FiorellaAllProcesses.ViewModels.Account
 {
     public class LoginVm
     {
@@ -9,6 +9,6 @@ namespace FiorellaAllProcesses.ViewModels.Auth
         public string Email { get; set; }
         [Required, MaxLength(255), DataType(DataType.Password)]
         public string Password { get; set; }
-        public bool RemembeMe {get; set; }
+        public bool RememberMe { get; set; } = false;
     }
 }

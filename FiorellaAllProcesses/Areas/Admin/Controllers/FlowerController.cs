@@ -2,6 +2,7 @@
 using FiorellaAllProcesses.Models;
 using FiorellaAllProcesses.ViewModels;
 using FiorellaAllProcesses.ViewModels.Product;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -13,6 +14,7 @@ using System.Threading.Tasks;
 namespace FiorellaAllProcesses.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "Admin")]
     public class FlowerController : Controller
     {
         private AppDbContext _context;

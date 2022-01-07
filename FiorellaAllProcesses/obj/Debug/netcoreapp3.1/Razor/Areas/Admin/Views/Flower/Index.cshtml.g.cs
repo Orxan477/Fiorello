@@ -40,8 +40,22 @@ using FiorellaAllProcesses.ViewModels.Sliders;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 5 "D:\HP\Documents\Private\Code Academy\Back-End\ASP.Net\FiorellaAllProcesses\FiorellaAllProcesses\Areas\Admin\Views\_ViewImports.cshtml"
+using FiorellaAllProcesses.Controllers;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 6 "D:\HP\Documents\Private\Code Academy\Back-End\ASP.Net\FiorellaAllProcesses\FiorellaAllProcesses\Areas\Admin\Views\_ViewImports.cshtml"
+using FiorellaAllProcesses.Utilities;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"0a61cbb185219c150365f1494da4a495b0636238", @"/Areas/Admin/Views/Flower/Index.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"8696a403b5f9a65c94a15f20b4c9c2f2c9b99994", @"/Areas/Admin/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"1ac542b7f9d18b7016f988488b1a8cb0998613a1", @"/Areas/Admin/Views/_ViewImports.cshtml")]
     public class Areas_Admin_Views_Flower_Index : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<Paginate<ProductListVM>>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("alt", new global::Microsoft.AspNetCore.Html.HtmlString(""), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -135,7 +149,7 @@ using FiorellaAllProcesses.ViewModels.Sliders;
 #line hidden
 #nullable disable
             WriteLiteral("</td>\r\n                                            <td>\r\n                                                ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "0a61cbb185219c150365f1494da4a495b063623810015", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "0a61cbb185219c150365f1494da4a495b063623810523", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -206,7 +220,7 @@ WriteAttributeValue("", 2019, product.Id, 2019, 11, false);
                                             </td>
                                             <td>
                                                 ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "0a61cbb185219c150365f1494da4a495b063623814013", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "0a61cbb185219c150365f1494da4a495b063623814521", async() => {
                 WriteLiteral(@"
                                                     <label class=""btn btn-warning"">
                                                         <i class=""mdi mdi-table-edit""></i>
@@ -241,7 +255,7 @@ WriteAttributeValue("", 2019, product.Id, 2019, 11, false);
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                                            </td>\r\n                                            <td>\r\n                                                ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "0a61cbb185219c150365f1494da4a495b063623816695", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "0a61cbb185219c150365f1494da4a495b063623817203", async() => {
                 WriteLiteral(@"
                                                     <button type=""submit"" class=""btn btn-danger"">
                                                         <i class=""mdi mdi-delete""></i>
@@ -290,7 +304,7 @@ WriteAttributeValue("", 2019, product.Id, 2019, 11, false);
 #line hidden
 #nullable disable
             WriteLiteral("\r\n                                </tbody>\r\n                            </table>\r\n                            <br />\r\n                            ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "0a61cbb185219c150365f1494da4a495b063623820393", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "0a61cbb185219c150365f1494da4a495b063623820901", async() => {
                 WriteLiteral("<label class=\"btn btn-success d-flex justify-content-center\">Create Flower</label>");
             }
             );
@@ -325,7 +339,7 @@ WriteAttributeValue(" ", 3998, Model.CurrentPage<3?"d-none":"", 3999, 34, false)
 #nullable disable
             EndWriteAttribute();
             WriteLiteral(">\r\n                                            ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "0a61cbb185219c150365f1494da4a495b063623822879", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "0a61cbb185219c150365f1494da4a495b063623823387", async() => {
                 WriteLiteral("First");
             }
             );
@@ -359,7 +373,7 @@ WriteAttributeValue(" ", 4258, Model.CurrentPage==1?"d-none":"", 4259, 35, false
 #nullable disable
             EndWriteAttribute();
             WriteLiteral(">\r\n                                            ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "0a61cbb185219c150365f1494da4a495b063623825287", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "0a61cbb185219c150365f1494da4a495b063623825795", async() => {
                 WriteLiteral("< Previous");
             }
             );
@@ -420,7 +434,7 @@ WriteAttributeValue(" ", 4856, Model.CurrentPage==i?"disabled":"", 4857, 37, fal
 #nullable disable
             EndWriteAttribute();
             WriteLiteral(">\r\n                                                    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "0a61cbb185219c150365f1494da4a495b063623829133", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "0a61cbb185219c150365f1494da4a495b063623829641", async() => {
 #nullable restore
 #line 85 "D:\HP\Documents\Private\Code Academy\Back-End\ASP.Net\FiorellaAllProcesses\FiorellaAllProcesses\Areas\Admin\Views\Flower\Index.cshtml"
                                                                                                            Write(i);
@@ -485,7 +499,7 @@ WriteAttributeValue(" ", 5223, Model.CurrentPage==Model.PageCount?"d-none":"", 5
 #nullable disable
             EndWriteAttribute();
             WriteLiteral(">\r\n                                            ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "0a61cbb185219c150365f1494da4a495b063623833045", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "0a61cbb185219c150365f1494da4a495b063623833553", async() => {
                 WriteLiteral("Next >");
             }
             );
@@ -528,7 +542,7 @@ WriteAttributeValue(" ", 5503, Model.CurrentPage==Model.PageCount-1?"d-none":"",
 #nullable disable
             EndWriteAttribute();
             WriteLiteral(">\r\n                                            ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "0a61cbb185219c150365f1494da4a495b063623836056", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "0a61cbb185219c150365f1494da4a495b063623836564", async() => {
                 WriteLiteral("Last");
             }
             );
