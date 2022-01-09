@@ -36,6 +36,8 @@ namespace FiorellaAllProcesses
                 config.UseMailKit(mailKitOptions);
             });
 
+            
+
             services.Configure<IdentityOptions>(identityOptions =>
             {
                 identityOptions.Password.RequiredLength = 8;

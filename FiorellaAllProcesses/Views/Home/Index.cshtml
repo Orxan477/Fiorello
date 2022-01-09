@@ -9,6 +9,7 @@
 
     <!-- SLIDER START -->
 
+    
     <section id="slider">
         <div class="owl-carousel slider">
             @foreach (var slider in Model.Sliders)
@@ -71,7 +72,7 @@
                 </div>
             </div>
             <div class="row">
-               @await Component.InvokeAsync("Product", new { take=8 }) 
+                @await Component.InvokeAsync("Product", new { take = 8 })
             </div>
         </div>
     </section>
