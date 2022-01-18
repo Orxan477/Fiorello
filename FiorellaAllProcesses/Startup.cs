@@ -82,6 +82,8 @@ namespace FiorellaAllProcesses
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
+            
+
             app.UseRouting();
 
             app.UseAuthentication();

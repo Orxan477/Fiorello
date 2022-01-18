@@ -32,6 +32,7 @@ namespace FiorellaAllProcesses.Areas.Admin.Controllers
             {
                 Name = u.Fullname,
                 Email = u.Email, 
+                Status=u.Status,
             }).ToList();
             return View(model);
         }

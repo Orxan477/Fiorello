@@ -19,6 +19,7 @@
                                         <th>Name</th>
                                         <th>Email</th>
                                         <th>RoleName</th>
+                                        <th>Status</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -29,6 +30,13 @@
                                             <td>@user.Name</td>
                                             <td>@user.Email</td>
                                             <td>@user.RoleName</td>
+                                            <td>@if (user.Status == true)
+                                            {
+                                                <label class="btn btn-success">Online</label>
+                                            }
+                                            else { 
+                                            <label class="btn btn-danger">Ofline</label>
+                                            }</td>
                                         </tr>
                                         userNum++;
                                     }

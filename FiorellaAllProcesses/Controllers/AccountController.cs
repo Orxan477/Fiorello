@@ -6,8 +6,6 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using NETCore.MailKit.Core;
 using System;
-using System.Net;
-using System.Net.Mail;
 using System.Threading.Tasks;
 
 
@@ -111,11 +109,9 @@ namespace FiorellaAllProcesses.Controllers
                 ModelState.AddModelError(string.Empty, "Please Confirm Your Email");
                 return View(loginVm);
             }
-            var device = Environment.MachineName.ToString();
-            var osVersion = Environment.OSVersion.ToString();
+            
             var result = await _signInManager.PasswordSignInAsync(user, loginVm.Password, loginVm.RememberMe,true);
-            Email.SendEmailAsync(user.Email, $"Dear {user.Fullname}. Your account has been logged in from this {device} device. Version={osVersion}. " +
-                                                            "If you are not, change your password.", "Fiorello");
+            
             if (result.IsLockedOut)
             {
                 ModelState.AddModelError(string.Empty, "Your Account is locked. Few minutes leter is unlocked");
@@ -127,6 +123,12 @@ namespace FiorellaAllProcesses.Controllers
                 ModelState.AddModelError(string.Empty, "Email and Password is Wrong");
                 return View(loginVm);
             }
+            user.Status = true;
+            await _context.SaveChangesAsync();
+            var device = Environment.MachineName.ToString();
+            var osVersion = Environment.OSVersion.ToString();
+            Email.SendEmailAsync(user.Email, $"Dear {user.Fullname}. Your account has been logged in from this {device} device. Version={osVersion}. " +
+                                                            "If you are not, change your password.", "Fiorello");
             if (ReturnUrl != null)
             {
                 return LocalRedirect(ReturnUrl);
@@ -288,6 +290,9 @@ namespace FiorellaAllProcesses.Controllers
         }
         public async Task<IActionResult> Logout(string ReturnUrl)
         {
+            var user = await _userManager.GetUserAsync(User);
+            user.Status = false;
+            await _context.SaveChangesAsync();
             await _signInManager.SignOutAsync();
             if (ReturnUrl != null)
             {

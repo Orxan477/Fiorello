@@ -6,5 +6,6 @@ namespace FiorellaAllProcesses.Models
     {
         public string Fullname { get; set; }
         public bool IsActived { get; set; }
+        public bool Status { get; set; }
     }
 }
